@@ -21,6 +21,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<meta name="twitter:site" content="@gandhinagaruniversity" />
 	<meta name="next-head-count" content="28" />
 	<noscript data-n-css=""></noscript>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 	<style>
@@ -502,34 +503,50 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<label class="label_heading text_break fw400">Results Found : <span class="fs16 color_222222 fw600" id="no_of_rzlt_fond">0</span></label>
 								</div>
 							</div>
-						</div>
-						<div class="resultb incard">
-							<div style="    padding-left: 55px;padding-right: 55px;" class="">
-
-								<div class="donut" style="--first: .40; --second: .60;">
-									<div class="donut__slice donut__slice__first"></div>
-									<div class="donut__slice donut__slice__second"></div>
-									<div class="donut__label">
-										<div class="donut__label__heading">
-										</div>
-									</div>
+							<div class="incard-2">
+								<div class="">
+									<button type="button" style=" text-align:center;" class="con-button btn big-button">
+										<span class="content_PbRSndwM" id="btn-text">
+											<b>PDF Converter</b></span></button>
 								</div>
 							</div>
 						</div>
+						<div class="resultb incard chart-d">
+							<canvas id="myChart" width="200px"></canvas>
+						</div>
 						<div class="resultb incard ">
-							<div class="resultb-1 ">
-								<span class="plag_percentage">40%</span>
-								<span class="dash_valuep"></span>
-								<span style=" padding-left:30px; " class="">Plagiarism </span>
+							<div>
+								<div class="resultb-1 ">
+									<span class="plag_percentage">40%</span>
+									<div style="" class="chart-label">
+										<span class="dash_valuep"></span>
+										<span style=" padding-left:30px; " class="">Plagiarism </span>
+									</div>
+								</div>
+								<div class="resultb-1 ">
+									<span class="unique_percentage ">60%</span>
+									<div style="" class="chart-label">
+										<span class=" dash_valueu"></span>
+										<span style=" padding-left:30px; " class="">Unique</span>
+									</div>
+								</div>
 							</div>
-							<div class="resultb-1 ">
-								<span class="unique_percentage ">60%</span>
-								<span class="dash_valueu"></span>
-								<span style=" padding-left:30px; " class="">Unique</span>
-							</div>
-							<div class="resultb-1-1"><a href="" type="button" style="text-align:center;" class="sub-button">Start New Search</a>
+							<div class="s-button" style="padding-top: 20px;padding-right: 30px;justify-content: space-around;display: flex;">
+								<button type="button" style=" text-align:center;" class="con-button btn  big-button ">
+									<span class="content_PbRSndwM" id="btn-text">
+										<a href="" style="" class="sub-button">Start New Search</a></span></button>
 							</div>
 
+						</div>
+					</div>
+					<div class="result-2">
+						<div>
+							<button type="button" style=" text-align:center;  " class="con-button btn big-button d-button">
+								<span class="content_PbRSndwM" id="btn-text">
+									<b>Download PDF Report</b></span></button>
+							<button type="button" style=" text-align:center;" class="con-button btn big-button d-button">
+								<span class="content_PbRSndwM" id="btn-text">
+									<b>Download Word Report</b></span></button>
 						</div>
 					</div>
 				</div>
@@ -647,12 +664,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			button.addEventListener("click", function() {
 				// Get the result element by its class name
 				var result = document.querySelector(".result");
-
+				var result2 = document.querySelector(".result-2");
 				// Toggle the visibility of the result element
 				result.classList.toggle("visible");
-
+				result2.classList.toggle("visible-2");
 				// Scroll to the bottom
 				result.scrollIntoView({
+					behavior: 'smooth',
+					block: 'end'
+				});
+				result2.scrollIntoView({
 					behavior: 'smooth',
 					block: 'end'
 				});
@@ -672,6 +693,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				textReflector.style.color = 'red'; // Change color to red if 90% or more of the limit is reached
 			} else {
 				textReflector.style.color = 'black'; // Reset color to black if below 90% of the limit
+			}
+		});
+
+		const ctx = document.getElementById('myChart');
+		new Chart(ctx, {
+			type: 'doughnut',
+			data: {
+				labels: ['Unique', 'Plagiarism'],
+				datasets: [{
+					label: '',
+					data: [60, 40]
+				}]
+			},
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						display: false
+					},
+					title: {}
+				}
 			}
 		});
 	</script>

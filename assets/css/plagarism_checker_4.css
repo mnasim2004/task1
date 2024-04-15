@@ -5,6 +5,12 @@
     display: block !important;
 }
 
+.result-2 {
+    display: none !important;
+}
+.visible-2 {
+    display: block !important;
+}
 
 * {
     padding: 0;
@@ -33,159 +39,7 @@ body {
     box-sizing: border-box;
   }
   
-  .donut {
-    --donut-size: 150px;
-    --donut-border-width: 15px;
-    --donut-spacing: 0;
-    --donut-spacing-color: 255, 255, 255;
-    --donut-spacing-deg: calc(1deg * var(--donut-spacing));
-    border-radius: 50%;
-    height: var(--donut-size);
-    position: relative;
-    width: var(--donut-size);
-  }
-  
-  .donut__label {
-    left: 50%;
-    line-height: 1.5;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-  }
-  
-  .donut__label__heading {
-    font-size: 24px;
-    font-weight: 600;
-  }
-  
-  .donut__label__sub {
-    color: #666666;
-    font-size: 14px;
-    letter-spacing: 0.05em;
-  }
-  
-  .donut__slice {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-  }
-  
-  .donut__slice::before,
-  .donut__slice::after {
-    border: var(--donut-border-width) solid rgba(0, 0, 0, 0);
-    border-radius: 50%;
-    content: "";
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transform: rotate(45deg);
-    width: 100%;
-  }
-  
-  .donut__slice::before {
-    border-width: calc(var(--donut-border-width) + 1px);
-    box-shadow: 0 0 1px 0 rgba(var(--donut-spacing-color), calc(100 * var(--donut-spacing)));
-  }
-  
-  .donut__slice__first {
-    --first-start: 0;
-  }
-  
-  .donut__slice__first::before {
-    border-top-color: rgba(var(--donut-spacing-color), calc(100 * var(--donut-spacing)));
-    transform: rotate(calc(360deg * var(--first-start) + 45deg));
-  }
-  
-  .donut__slice__first::after {
-    border-top-color: #ff6838;
-    border-right-color: rgba(255, 104, 56, calc(100 * (var(--first) - .25)));
-    border-bottom-color: rgba(255, 104, 56, calc(100 * (var(--first) - .5)));
-    border-left-color: rgba(255, 104, 56, calc(100 * (var(--first) - .75)));
-    transform: rotate(calc(360deg * var(--first-start) + 45deg + var(--donut-spacing-deg)));
-  }
-  
-  .donut__slice__second {
-    --second-start: calc(var(--first));
-    --second-check: max(calc(var(--second-start) - .5), 0);
-    -webkit-clip-path: inset(0 calc(50% * (var(--second-check) / var(--second-check))) 0 0);
-            clip-path: inset(0 calc(50% * (var(--second-check) / var(--second-check))) 0 0);
-  }
-  
-  .donut__slice__second::before {
-    border-top-color: rgba(var(--donut-spacing-color), calc(100 * var(--donut-spacing)));
-    transform: rotate(calc(360deg * var(--second-start) + 45deg));
-  }
-  
-  .donut__slice__second::after {
-    border-top-color: #ffc820;
-    border-right-color: rgba(255, 200, 32, calc(100 * (var(--second) - .25)));
-    border-bottom-color: rgba(255, 200, 32, calc(100 * (var(--second) - .5)));
-    border-left-color: rgba(255, 200, 32, calc(100 * (var(--second) - .75)));
-    transform: rotate(calc(360deg * var(--second-start) + 45deg + var(--donut-spacing-deg)));
-  }
-  
-  .donut__slice__third {
-    --third-start: calc(var(--first) + var(--second));
-    --third-check: max(calc(var(--third-start) - .5), 0);
-    -webkit-clip-path: inset(0 calc(50% * (var(--third-check) / var(--third-check))) 0 0);
-            clip-path: inset(0 calc(50% * (var(--third-check) / var(--third-check))) 0 0);
-  }
-  
-  .donut__slice__third::before {
-    border-top-color: rgba(var(--donut-spacing-color), calc(100 * var(--donut-spacing)));
-    transform: rotate(calc(360deg * var(--third-start) + 45deg));
-  }
-  
-  .donut__slice__third::after {
-    border-top-color: #97c95c;
-    border-right-color: rgba(151, 201, 92, calc(100 * (var(--third) - .25)));
-    border-bottom-color: rgba(151, 201, 92, calc(100 * (var(--third) - .5)));
-    border-left-color: rgba(151, 201, 92, calc(100 * (var(--third) - .75)));
-    transform: rotate(calc(360deg * var(--third-start) + 45deg + var(--donut-spacing-deg)));
-  }
-  
-  .donut__slice__fourth {
-    --fourth-start: calc(var(--first) + var(--second) + var(--third));
-    --fourth-check: max(calc(var(--fourth-start) - .5), 0);
-    -webkit-clip-path: inset(0 calc(50% * (var(--fourth-check) / var(--fourth-check))) 0 0);
-            clip-path: inset(0 calc(50% * (var(--fourth-check) / var(--fourth-check))) 0 0);
-  }
-  
-  .donut__slice__fourth::before {
-    border-top-color: rgba(var(--donut-spacing-color), calc(100 * var(--donut-spacing)));
-    transform: rotate(calc(360deg * var(--fourth-start) + 45deg));
-  }
-  
-  .donut__slice__fourth::after {
-    border-top-color: #1cb2f6;
-    border-right-color: rgba(28, 178, 246, calc(100 * (var(--fourth) - .25)));
-    border-bottom-color: rgba(28, 178, 246, calc(100 * (var(--fourth) - .5)));
-    border-left-color: rgba(28, 178, 246, calc(100 * (var(--fourth) - .75)));
-    transform: rotate(calc(360deg * var(--fourth-start) + 45deg + var(--donut-spacing-deg)));
-  }
-  
-  .donut__slice__fifth {
-    --fifth-start: calc(var(--first) + var(--second) + var(--third) + var(--fourth));
-    --fifth-check: max(calc(var(--fifth-start) - .5), 0);
-    -webkit-clip-path: inset(0 calc(50% * (var(--fifth-check) / var(--fifth-check))) 0 0);
-            clip-path: inset(0 calc(50% * (var(--fifth-check) / var(--fifth-check))) 0 0);
-  }
-  
-  .donut__slice__fifth::before {
-    border-top-color: rgba(var(--donut-spacing-color), calc(100 * var(--donut-spacing)));
-    transform: rotate(calc(360deg * var(--fifth-start) + 45deg));
-  }
-  
-  .donut__slice__fifth::after {
-    border-top-color: #1685b8;
-    border-right-color: rgba(22, 133, 184, calc(100 * (var(--fifth) - .25)));
-    border-bottom-color: rgba(22, 133, 184, calc(100 * (var(--fifth) - .5)));
-    border-left-color: rgba(22, 133, 184, calc(100 * (var(--fifth) - .75)));
-    transform: rotate(calc(360deg * var(--fifth-start) + 45deg + var(--donut-spacing-deg)));
-  }
+
   
 
 
@@ -207,6 +61,13 @@ body {
     line-height: 1.5rem;
 }
  
+#myChart {
+    position: relative;
+    margin-left: 25px;
+    height: 200px !important;
+    width: 200px !important;
+  }
+
 .better {
   box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
 }
@@ -220,7 +81,7 @@ html {
 .resultb {
     float: left;
     width: 33.33%;
-    padding: 20px;
+    padding: 0.75rem;
 
   }
 
@@ -237,7 +98,7 @@ html {
     float: left;
     width: 100%;
     padding-top: 20px;
-    padding-left: 70px;
+    padding-left: 100px;
     padding-right: 70px;
     height:50%;
   }
@@ -273,7 +134,7 @@ html {
     height: 5px;
     display: inline-block; /* Change to inline-block to allow margin */
     margin-right: 5px; /* Add margin to the right */
-    background-color: #ff6838;
+    background-color: #FF6384;
     display:block;
     position: relative;
     text-align: center;
@@ -286,7 +147,7 @@ html {
     height: 5px;
     display: inline-block; /* Change to inline-block to allow margin */
     margin-right: 5px; /* Add margin to the right */
-    background-color: #ffc820;
+    background-color: #36A2EB;
     display:block;
     position: relative;
     text-align: center;
@@ -305,14 +166,49 @@ html {
     padding-bottom: 10px;
     padding-left: 10px;
     margin-top:10px;
+    display: flex;
   }
 
   .sub-button{
-    background: #0373dd;
-    padding: 10px 8px;
-    font-size: 13px;
-    color: #fff;
-    border-radius: 4px;
-    margin: 10px 0 0;
     text-decoration: none;
+    color: white;
+    font-weight: bold;
   }
+  .con-button{
+    text-decoration: none;
+    white-space: nowrap; 
+    margin-top: 10px;
+    display: flex;
+  }
+  .big-button{
+        padding-left: 80px !important;
+    /* padding-top: 20px!important; */
+    padding-right: 80px!important;
+    /* padding-bottom: 20px!important; */
+  }
+
+  @media (max-width: 940px){
+    .resultb {
+        width: 100%;
+        padding: 0.75rem;
+    }
+    .incard-2{
+        justify-content: space-around;
+    }
+    .chart-d{
+        display: flex;
+        justify-content: space-around;
+    }
+    .s-button{
+        display: flex;
+        float: none;
+        justify-content: space-around;
+    }
+    .d-button{
+        width:100%;
+
+    }
+    .chart-label{
+        display: flex;justify-content: center;
+    }
+}
