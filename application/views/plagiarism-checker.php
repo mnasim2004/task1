@@ -449,12 +449,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<form class="form_form__okfjE" id="text_checker">
 							<div class="form_formContent__MMC7Z">
 								<div class="form_textAreaContainer__3iFA4 form_onePageReportTextAreaContainer__elPgq">
-									<textarea class="form_textAreaInput__d_XIK C3_dkKeNHYB" id="plain-text-input" name="userText" spellcheck="false" placeholder="Enter text to check for plagiarism and writing errors." maxLength="10000"></textarea>
+									<textarea class="form_textAreaInput__d_XIK C3_dkKeNHYB" id="plain-text-input" name="userText" spellcheck="false" placeholder="Enter text to check for plagiarism and writing errors." maxLength="1000"></textarea>
 								</div>
 								<div style="height:8px;flex-shrink:0"></div>
 								<div class="form_ctaContainer__dSGmh btn-bar">
 									<div>
-										<button class="btn" type="submit" id="check_plagiarism">
+										<button class="btn" type="submit" id="check_plagiarism" onclick="submitText()">
 											<span class="content_PbRSndwM" id="btn-text">
 												<b>Checking authenticity of research</b>
 											</span>
@@ -470,7 +470,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											</div>
 										</button>
 									</div>
-									<div class="C5_dkKeNHYB form_characterCount__kHV06"><span id="text-reflector">0</span>/<b>10000</b></div>
+									<div class="C5_dkKeNHYB form_characterCount__kHV06"><span id="text-reflector">0</span>/<b>1000</b></div>
 								</div>
 							</div>
 						</form>
@@ -531,14 +531,38 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									</div>
 								</div>
 							</div>
-							<div class="s-button" style="padding-top: 20px;padding-right: 30px;justify-content: space-around;display: flex;">
-								<button type="button" style=" text-align:center;" class="con-button btn  big-button ">
-									<span class="content_PbRSndwM" id="btn-text">
-										<a href="" style="" class="sub-button">Start New Search</a></span></button>
+							<div class="incard-2">
+								<div class="">
+									<button type="button" style=" text-align:center;" class="con-button btn big-button">
+										<span class="content_PbRSndwM" id="btn-text">
+											<a href="" class="sub-button">Start New Search</a></span></button>
+								</div>
 							</div>
 
 						</div>
 					</div>
+					<div style="" class="space-btw"></div>
+					<div style="width:100%;display:flex;" class="result-3">
+						<div style="" class="txt-box rescard" id="text-output">
+						</div>
+						<div style="" class=" txt-box-2 rescard">
+							<div style="font-size: 12px;color: #606060;">
+								Similarity <span>30%</span>
+							</div>
+							<div style="font-size: 14px;color: #0373dd;margin-top: 10px;margin-bottom: 10px;font-weight: 500;">
+								How to use redis?
+							</div>
+							<div style="font-size: 12px;color: #606060;line-height: 1.42857143;;">
+								<p>Reputation: 0. #1. 10-29-2022, 12:37 PM. Hi, i have a redis server running. In Config/Cach e.php i set the handler to redis and set the credentials + the right host. I installed predis via composer. The cache is not working, because the cache item is always empty. </p>
+							</div>
+							<div style="margin-top:10px;margin-bottom:10px;font-size: 12px;text-decoration: none;color:#1f243c;display:flex;">
+								<a href="">https://forum.codeigniter.com/showthread.php?tid=84680
+									<img loading="lazy" src="https://www.duplichecker.com/asets/img/ris_arrow.svg" style=" background: #1f243c;padding: 5px;border-radius: 6px;width: 22px;margin-top:5px;margin-bottom:-5px; margin-left: 3px;">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div style="" class="space-btw"></div>
 					<div class="result-2">
 						<div>
 							<button type="button" style=" text-align:center;  " class="con-button btn big-button d-button">
@@ -642,6 +666,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			});
 		});
 
+		function submitText() {
+			// Get the text from the textarea
+			var userInput = document.getElementById('plain-text-input').value;
+			console.log(userInput);
+			// Get the div where you want to display the text
+			var outputDiv = document.getElementById('text-output');
+
+			// Create a new paragraph element
+			var paragraph = document.createElement('p');
+			paragraph.style.padding = '0.75em';
+
+			// Set the text content of the paragraph to the user input
+			paragraph.textContent = userInput;
+
+			// Append the paragraph to the output div
+			outputDiv.appendChild(paragraph);
+		}
+
 		function validateFileType(input) {
 			const validFileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.oasis.opendocument.text', 'text/rtf', 'text/plain', 'text/html'];
 			const file = input.files[0];
@@ -665,9 +707,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				// Get the result element by its class name
 				var result = document.querySelector(".result");
 				var result2 = document.querySelector(".result-2");
+				var result3 = document.querySelector(".result-3");
 				// Toggle the visibility of the result element
 				result.classList.toggle("visible");
 				result2.classList.toggle("visible-2");
+				result3.classList.toggle("visible-3");
 				// Scroll to the bottom
 				result.scrollIntoView({
 					behavior: 'smooth',
